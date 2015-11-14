@@ -8,7 +8,9 @@ namespace WebApiDemo.Models
 {
     public class Jmjm6Repository : IJmjm6Repository
     {
-        private List<Jmjm6> Jmjm6s = new List<Jmjm6>(); private int _nextId = 1; public Jmjm6Repository()
+        private List<Jmjm6> Jmjm6s = new List<Jmjm6>();
+        private int _nextId = 1;
+        public Jmjm6Repository()
         {
             Add(new Jmjm6 { Name = "Tomato soup", Category = "Groceries", Price = 1.39M });
             Add(new Jmjm6 { Name = "Yo-yo", Category = "Toys", Price = 3.75M });
