@@ -23,6 +23,7 @@ namespace WebApiDemo
             //jsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
+            
             // Web API 路由
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
