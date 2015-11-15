@@ -14,6 +14,6 @@ namespace WebApiDemo.Models
         {
         }
 
-        public System.Data.Entity.DbSet<WebApiDemo.Models.Rcbp1> Rcbp1s { get; set; }
+        public System.Data.Entity.DbSet<WebApiDemo.Models.Rcbp1> DtRcbp1 { get; set; }
     }
 }

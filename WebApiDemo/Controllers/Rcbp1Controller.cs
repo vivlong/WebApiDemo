@@ -9,31 +9,48 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebApiDemo.Interface;
 using WebApiDemo.Models;
 
 namespace WebApiDemo.Controllers
 {
+    [RoutePrefix("api/rcbp1s")]
     public class Rcbp1Controller : ApiController
     {
+        static readonly IRcbp1Repository repository = new Rcbp1Repository();
         private WebApiDemoContext db = new WebApiDemoContext();
 
-        // GET: api/Rcbp1
+        // GET: api/
+        [Route("")]
         public IQueryable<Rcbp1> GetRcbp1s()
-        {
-            return db.Rcbp1s;
+        {            
+            return repository.GetAll();
         }
 
         // GET: api/Rcbp1/5
+        [Route("{id:int}")]
         [ResponseType(typeof(Rcbp1))]
         public async Task<IHttpActionResult> GetRcbp1(int id)
         {
-            Rcbp1 rcbp1 = await db.Rcbp1s.FindAsync(id);
+            Rcbp1 rcbp1 = await db.DtRcbp1.FindAsync(id);
             if (rcbp1 == null)
             {
                 return NotFound();
             }
-
             return Ok(rcbp1);
+        }
+        
+        // GET: api/Rcbp1/5
+        [Route("{id:int}/details")]
+        [ResponseType(typeof(Rcbp1))]
+        public async Task<IHttpActionResult> GetRcbp1Details(int id)
+        {
+            Rcbp1 rcbp1 = await db.DtRcbp1.FindAsync(id);
+            if (rcbp1 == null)
+            {
+                return NotFound();
+            }
+            return Ok(rcbp1.BusinessPartyCode);
         }
 
         // PUT: api/Rcbp1/5
@@ -80,7 +97,7 @@ namespace WebApiDemo.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Rcbp1s.Add(rcbp1);
+            db.DtRcbp1.Add(rcbp1);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = rcbp1.TrxNo }, rcbp1);
@@ -90,13 +107,13 @@ namespace WebApiDemo.Controllers
         [ResponseType(typeof(Rcbp1))]
         public async Task<IHttpActionResult> DeleteRcbp1(int id)
         {
-            Rcbp1 rcbp1 = await db.Rcbp1s.FindAsync(id);
+            Rcbp1 rcbp1 = await db.DtRcbp1.FindAsync(id);
             if (rcbp1 == null)
             {
                 return NotFound();
             }
 
-            db.Rcbp1s.Remove(rcbp1);
+            db.DtRcbp1.Remove(rcbp1);
             await db.SaveChangesAsync();
 
             return Ok(rcbp1);
@@ -113,7 +130,7 @@ namespace WebApiDemo.Controllers
 
         private bool Rcbp1Exists(int id)
         {
-            return db.Rcbp1s.Count(e => e.TrxNo == id) > 0;
+            return db.DtRcbp1.Count(e => e.TrxNo == id) > 0;
         }
     }
 }
