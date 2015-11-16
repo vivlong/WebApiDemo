@@ -16,7 +16,7 @@ namespace WebApiDemo.Controllers
     [RoutePrefix("api/rcbp1")]
     public class Rcbp1Controller : ApiController
     {
-        private WebApiDemoContext db = new WebApiDemoContext();
+        private DataBaseContext db = new DataBaseContext();
 
         // GET: api/
         [Route("")]

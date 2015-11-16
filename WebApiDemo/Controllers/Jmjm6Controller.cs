@@ -16,7 +16,7 @@ namespace WebApiDemo.Controllers
     [RoutePrefix("api/jmjm6")]
     public class Jmjm6Controller : ApiController
     {
-        private WebApiDemoContext db = new WebApiDemoContext();
+        private DataBaseContext db = new DataBaseContext();
 
         // GET: api/Jmjm6
         [Route("")]
